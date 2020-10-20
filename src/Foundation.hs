@@ -125,6 +125,11 @@ instance Yesod App where
                     , menuItemRoute = CreateRouteR
                     , menuItemAccessCallback = True
                     }
+                , NavbarLeft $ MenuItem
+                    { menuItemLabel = "Chart.js"
+                    , menuItemRoute = ChartJSR
+                    , menuItemAccessCallback = True
+                    }
                 , NavbarRight $ MenuItem
                     { menuItemLabel = "Login"
                     , menuItemRoute = AuthR LoginR
@@ -178,6 +183,7 @@ instance Yesod App where
     isAuthorized (StaticR _) _ = return Authorized
     isAuthorized CreateRouteR _ = return Authorized
     isAuthorized LinkToProjectR _ = return Authorized
+    isAuthorized ChartJSR _ = return Authorized
     -- the profile route requires that the user is authenticated, so we
     -- delegate to that function
     isAuthorized ProfileR _ = isAuthenticated
